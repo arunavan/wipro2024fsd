@@ -1,0 +1,76 @@
+
+create table course(cid int primary key, cname varchar(20),duration int);
+insert into course values(10,'java',12);
+insert into course values(20,'j2ee',6);
+select * from course;
+create table student(sid int primary key, sname varchar(20),cid int references course(cid) );
+insert into student values(1,'anjan',10);
+insert into student values(2,'abhinav',20);
+insert into student values(3,'akash',10);
+insert into student values(4,'rakesh',10);
+insert into student values(5,'ram',20);
+select * from student;
+select s.sid,s.sname,c.cid,c.cname,c.duration  from student s,course c where c.cid=s.cid;
+desc course;
+select s.sid,s.name,c.cid,c.cname,c.startdate from student s cross join course c;
+
+show tables;
+select * from course;
+set autocommit=false;
+insert into course values(229,'spring',2),(221,'rest',2),(223,'webservices',4);
+delete from course where cid=21;
+savepoint a;
+delete from course where cid=221;
+savepoint b;
+delete from course where cid=229;
+savepoint c;
+rollback to a;
+commit;
+use revature;
+show tables;
+create table candidates(id int primary key,first_name varchar(20),last_name varchar(20),skill varchar(20));
+insert into candidates values(3,'anjan','kumar','j2ee');
+show tables;
+use revature;
+create table  employee(eid  int, ename    varchar(20) , mid  int);
+insert into employee values(1,'ram',1),(2,'kiran',1),(3,'ravi',1),(4,'smitha',2),(5,'sir',3),(6,'ramesh',2);
+insert into employee values(7,'Sriram',2),(8,'Arindam',1),(9,'Kamesh',2),(10,'Abhinav',3);
+select * from employee;
+select   a.eid as ManagerID , a.ename  as ManagerName  ,b.ename as Emplyee 
+from   employee a
+join   employee b
+on a.eid=b.mid;
+
+Create table student (sid int primary key ,name varchar(20),address varchar(20),age int);
+insert into student values(1,'ram','hyd',20),(2,'ravi','chennai',20),(3,'kiran','pune',20),(4,'giri','hyd',20),(5,'sai','hyd',20);
+select * from student;
+
+Create table course (cid int primary key,cname varchar(20),startdate date,sid int references student(sid));
+insert into course values(101,'java','2021/07/05',1);
+insert into course values(102,'mysql','2021/07/05',2);
+insert into course values(103,'oracle','2021/07/05',1);
+insert into course values(104,'spring','2021/07/05',3);
+insert into course values(105,'aws','2021/07/05',null);
+insert into course values(106,'docker','2021/07/05',null);
+select * from course;
+# sid,name,address,age
+# cid, cname,startdate,sid
+
+# INNER JOIN
+select s.sid,s.name,s.address,s.age,c.cid,c.cname,c.startdate  from student s inner join course c on s.sid=c.sid; 
+
+#LEFT OUTER JOIN
+select s.sid,s.name,s.address,s.age,c.cid,c.cname,c.startdate  from student s left outer join course c on s.sid=c.sid; 
+
+#RIGHT OUTER JOIN
+select s.sid,s.name,s.address,s.age,c.cid,c.cname,c.startdate  from student s right  outer join course c on s.sid=c.sid; 
+
+# FULL OUTER JOIN
+select s.sid,s.name,s.address,s.age,c.cid,c.cname,c.startdate  from student s left  outer join course c on s.sid=c.sid
+union 
+select s.sid,s.name,s.address,s.age,c.cid,c.cname,c.startdate  from student s right  outer join course c on s.sid=c.sid; 
+
+
+
+
+

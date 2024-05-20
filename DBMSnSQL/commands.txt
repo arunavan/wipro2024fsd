@@ -1,0 +1,13 @@
+to display all the tables =>
+
+
+select * from tab;
+
+employee:
+
+DDL: Data Definition Language 
+create, alter, drop, truncate
+
+create table employee(id number(2) primary key,
+                      name varchar(10),
+                      email varchar(20));

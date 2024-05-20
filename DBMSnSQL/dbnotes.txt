@@ -77,5 +77,16 @@ select * from empw;
 
 select e.eid,e.name,d.did,d.dname from empw e,dept d where e.did=d.did;
 
+#INDEX 
+
+select * from tab;
+select * from wemp1;
+select * from wemp1 where name='user104';
+select * from wemp1 where id=106;
+create index nameindex on wemp1(name);
+create index i1 on wemp1(email);
+select * from wemp1 where email=''
+drop index i1;
+
 
 

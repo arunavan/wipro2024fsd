@@ -1,0 +1,37 @@
+http://127.0.0.1:9500/apex
+sudo service oracle-xe start
+
+
+
+
+select * from tab;
+create table wiproemployee(id number primary key, name varchar(10), email varchar(20));
+desc wiproemployee;
+insert into wiproemployee values(1,'user1','user1@wipro.com');
+select * from wiproemployee;
+
+insert into wiproemployee(id) values(2);
+
+insert into wiproemployee(id,name) values(3,'user1');
+
+insert into wiproemployee(id,email) values(4,'user1@wipro.com');
+
+insert into wiproemployee values(5,'user5',null);
+
+
+create table wemp as select * from wiproemployee;
+
+desc wemp;
+
+select * from wemp;
+
+
+alter table wemp1 modify  sal number(10);
+alter table wemp1 add  dept number(2);
+alter table wemp1 modify dept number(5);
+alter table wemp1 rename column  dept to department;
+
+alter table wemp1 add (city varchar(20), state varchar(20));
+desc wemp1;
+
+alter table wemp1 drop column state;

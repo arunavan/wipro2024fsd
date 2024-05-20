@@ -23,6 +23,9 @@ create table wemp as select * from wiproemployee;
 
 desc wemp;
 
+
+
+
 select * from wemp;
 
 
@@ -35,3 +38,44 @@ alter table wemp1 add (city varchar(20), state varchar(20));
 desc wemp1;
 
 alter table wemp1 drop column state;
+
+
+# DML
+desc wemp1;
+insert into wemp1 values(104,'user104','user104@wipro.com',9999999999,7777,10,'HYD'); 
+update wemp1 set department=20 where id=103;
+update wemp1 set department=25,city='Chennai' where id=103;
+update wemp1 set department=30,city='Mumbai' where id<=102;
+insert into wemp1 values(105,'user104','user104@wipro.com',3999999999,7777,10,'HYD'); 
+
+insert into wemp1 values(106,'user104','user104@wipro.com',9299999999,7777,10,'HYD'); 
+
+delete from wemp1 where id=102 or city='Mumbai'
+delete from wemp1 where not id=102 or id=103;
+delete from wemp1 where id not in (104,105)
+select * from wemp1;
+
+create table student (id number primary key,name varchar(10), marks number check (marks<100));
+
+insert into student values(1,'s123',93);
+
+create table dept (did number primary key,dname varchar(10));
+insert into dept values(10,'IT');
+insert into dept values(20,'INFRA');
+insert into dept values(30,'ADMIN');
+select * from dept;
+
+create table  empw(eid number primary key,name varchar(20),did references dept(did));
+insert into empw values(101,'ram',30);
+insert into empw values(102,'raj',20);
+insert into empw values(103,'kiran',10);
+insert into empw values(104,'sam',30);
+insert into empw values(105,'bindu',30);
+insert into empw values(106,'ramarao',10);
+insert into empw values(107,'sriram',20);
+select * from empw;
+
+select e.eid,e.name,d.did,d.dname from empw e,dept d where e.did=d.did;
+
+
+

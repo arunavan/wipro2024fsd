@@ -90,3 +90,51 @@ drop index i1;
 
 
 
+CREATE TABLE Car
+(
+Pk_Car_Id number PRIMARY KEY,
+Brand VARCHAR(100),
+Model VARCHAR(100)
+);
+
+desc car;
+
+CREATE TABLE Engineer
+( Pk_Engineer_Id number PRIMARY KEY,
+  FullName VARCHAR(100),
+  MobileNo VARCHAR(11),
+  Fk_Car_Id number  REFERENCES Car(Pk_Car_Id)
+);
+
+desc Engineer;
+grant insert/delete/update/select  to rpsuser1 on emp;
+
+revoke all from rpsuser1 on emp;
+
+
+select * from wemp1;
+select id,name,city from wemp1;
+select id,name,sal from wemp1;
+select id,name,sal+500,sal*100 from wemp1;
+select name, lower(name),upper(name),length(name) from wemp1;
+select * from wemp1 where not id<=104;
+select * from wemp1 where not id=104 or id=106;
+select * from wemp1 where id not in(103,106);
+select * from wemp1;
+select * from dept;
+select * from dept where dname not like 'I%';
+select * from dept where did between 10 and 30;
+select   * from wemp1;  
+insert into wemp1 values(107,'ram','ram@gmail.com','9898989898',9999,25,'Chennai');
+insert into wemp1 values(108,'ram','ram@gmail.com','9893989898',9999,25,'Pune');
+insert into wemp1 values(109,'raj','raj@gmail.com','8898989898',9999,25,'Chennai');
+select sum(sal) from wemp1;
+select department,sum(sal) from wemp1 group by department;
+select city,avg(sal) from wemp1 group by city;
+
+select avg(sal) from wemp1;
+select max(sal) from wemp1;
+select city,max(sal) from wemp1 group by city;
+select min(sal) from wemp1;
+select count(sal) from wemp1;
+select city,count(sal) from wemp1 group by city;

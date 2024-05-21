@@ -1,0 +1,143 @@
+http://127.0.0.1:9500/apex
+sudo service oracle-xe start
+
+
+
+
+select * from tab;
+create table wiproemployee(id number primary key, name varchar(10), email varchar(20));
+desc wiproemployee;
+insert into wiproemployee values(1,'user1','user1@wipro.com');
+select * from wiproemployee;
+
+insert into wiproemployee(id) values(2);
+
+insert into wiproemployee(id,name) values(3,'user1');
+
+insert into wiproemployee(id,email) values(4,'user1@wipro.com');
+
+insert into wiproemployee values(5,'user5',null);
+
+
+create table wemp as select * from wiproemployee;
+
+desc wemp;
+
+
+
+
+select * from wemp;
+
+
+alter table wemp1 modify  sal number(10);
+alter table wemp1 add  dept number(2);
+alter table wemp1 modify dept number(5);
+alter table wemp1 rename column  dept to department;
+
+alter table wemp1 add (city varchar(20), state varchar(20));
+desc wemp1;
+
+alter table wemp1 drop column state;
+
+
+# DML
+desc wemp1;
+insert into wemp1 values(104,'user104','user104@wipro.com',9999999999,7777,10,'HYD'); 
+update wemp1 set department=20 where id=103;
+update wemp1 set department=25,city='Chennai' where id=103;
+update wemp1 set department=30,city='Mumbai' where id<=102;
+insert into wemp1 values(105,'user104','user104@wipro.com',3999999999,7777,10,'HYD'); 
+
+insert into wemp1 values(106,'user104','user104@wipro.com',9299999999,7777,10,'HYD'); 
+
+delete from wemp1 where id=102 or city='Mumbai'
+delete from wemp1 where not id=102 or id=103;
+delete from wemp1 where id not in (104,105)
+select * from wemp1;
+
+create table student (id number primary key,name varchar(10), marks number check (marks<100));
+
+insert into student values(1,'s123',93);
+
+create table dept (did number primary key,dname varchar(10));
+insert into dept values(10,'IT');
+insert into dept values(20,'INFRA');
+insert into dept values(30,'ADMIN');
+select * from dept;
+
+create table  empw(eid number primary key,name varchar(20),did references dept(did));
+insert into empw values(101,'ram',30);
+insert into empw values(102,'raj',20);
+insert into empw values(103,'kiran',10);
+insert into empw values(104,'sam',30);
+insert into empw values(105,'bindu',30);
+insert into empw values(106,'ramarao',10);
+insert into empw values(107,'sriram',20);
+select * from empw;
+
+select e.eid,e.name,d.did,d.dname from empw e,dept d where e.did=d.did;
+
+#INDEX 
+
+select * from tab;
+select * from wemp1;
+select * from wemp1 where name='user104';
+select * from wemp1 where id=106;
+create index nameindex on wemp1(name);
+create index i1 on wemp1(email);
+select * from wemp1 where email=''
+drop index i1;
+
+
+
+CREATE TABLE Car
+(
+Pk_Car_Id number PRIMARY KEY,
+Brand VARCHAR(100),
+Model VARCHAR(100)
+);
+
+desc car;
+
+CREATE TABLE Engineer
+( Pk_Engineer_Id number PRIMARY KEY,
+  FullName VARCHAR(100),
+  MobileNo VARCHAR(11),
+  Fk_Car_Id number  REFERENCES Car(Pk_Car_Id)
+);
+
+desc Engineer;
+grant insert/delete/update/select  to rpsuser1 on emp;
+
+revoke all from rpsuser1 on emp;
+
+
+select * from wemp1;
+select id,name,city from wemp1;
+select id,name,sal from wemp1;
+select id,name,sal+500,sal*100 from wemp1;
+select name, lower(name),upper(name),length(name) from wemp1;
+select * from wemp1 where not id<=104;
+select * from wemp1 where not id=104 or id=106;
+select * from wemp1 where id not in(103,106);
+select * from wemp1;
+select * from dept;
+select * from dept where dname not like 'I%';
+select * from dept where did between 10 and 30;
+select   * from wemp1;  
+insert into wemp1 values(107,'ram','ram@gmail.com','9898989898',9999,25,'Chennai');
+insert into wemp1 values(108,'ram','ram@gmail.com','9893989898',9999,25,'Pune');
+insert into wemp1 values(109,'raj','raj@gmail.com','8898989898',9999,25,'Chennai');
+select sum(sal) from wemp1;
+select department,sum(sal) from wemp1 group by department;
+select city,avg(sal) from wemp1 group by city;
+
+select avg(sal) from wemp1;
+select max(sal) from wemp1;
+select city,max(sal) from wemp1 group by city;
+select min(sal) from wemp1;
+select count(sal) from wemp1;
+select city,count(sal) from wemp1 group by city;
+
+
+select name,email,  case when department=25 then 'T3' when  department =10 then'T4' else 'TT' end as EmployeeBand from wemp1 ;

@@ -199,6 +199,20 @@ select * from studentw1 intersect select * from studentw2;
 select * from studentw1 minus select * from studentw2;
 select * from studentw2 minus select * from studentw1;
 
+create table empself(eid number primary key, name varchar(10),mid number);
 
+insert into empself values (1,'ram',2);
+
+insert into empself values(2,'ravi',1);
+insert into empself values(3,'kiran',1);
+insert into empself values(4,'akash',2);
+
+insert into empself values(5,'raghav',1);
+
+insert into empself values(6,'mahender',2);
+
+select * from empself;
+
+select e.eid ManagerID ,e.name Manager ,m.name EmployeeNAme from empself e join empself m on e.eid=m.mid;
 
 

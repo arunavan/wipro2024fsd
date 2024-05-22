@@ -174,4 +174,31 @@ select s.sid,s.sname,s.dob,c.cid,c.cname,c.duration from studentw1 s right outer
 select s.sid,s.sname,s.dob,c.cid,c.cname,c.duration from studentw1 s full outer join coursew1 c on s.cid=c.cid;
 select s.sid,s.sname,s.dob,c.cid,c.cname,c.duration from studentw1 s, coursew1 c;
 
- 
+ select rownum,sid,sname from studentw1;
+select * from employeew1;
+select * from wemp1;
+
+select department,sum(sal) from wemp1 group by department ;
+
+select department,sum(sal) from wemp1 group by department having department=40;
+
+select * from wemp1 order by city desc ;
+
+select * from studentw1;
+create table studentw2 as select * from studentw1;
+select * from studentw2;
+update studentw2 set sname='arun' where sid=104;
+update studentw2 set sname='bindu' where sid=105;
+update studentw2 set sname='chandu' where sid=106;
+#SET
+select * from studentw1 union select * from studentw2;
+select * from studentw1 union all select * from studentw2;
+
+select * from studentw1 intersect select * from studentw2;
+
+select * from studentw1 minus select * from studentw2;
+select * from studentw2 minus select * from studentw1;
+
+
+
+

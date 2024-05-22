@@ -140,4 +140,38 @@ select count(sal) from wemp1;
 select city,count(sal) from wemp1 group by city;
 
 
-select name,email,  case when department=25 then 'T3' when  department =10 then'T4' else 'TT' end as EmployeeBand from wemp1 ;
+select name,email,  case when department=25 then 'T3' when  department =10 then'T4' else 'TT'
+ end as EmployeeBand from wemp1 ;
+ 
+ 
+ 
+ 
+ select current_date from dual;
+select extract ( day from current_date) from dual;
+
+create table coursew1(cid number primary key, cname varchar(10),duration number(2));
+
+create table studentw1( sid number primary key,sname varchar(20),dob date, cid number references coursew1(cid));
+
+insert into coursew1 values(1,'java',3);
+insert into coursew1 values(2,'oracle',5);
+insert into coursew1 values(3,'spring',4);
+
+insert into coursew1 values(4,'html',3);
+insert into coursew1 values(5,'rest',3);
+select * from coursew1;
+insert into studentw1 values(101,'ram','09-JAN-80',2);
+insert into studentw1 values(102,'kiran','09-JAN-80',1);
+insert into studentw1 values(103,'raj','09-JAN-80',3);
+insert into studentw1 values(104,'ram','09-JAN-80',null);
+insert into studentw1 values(105,'ram','09-JAN-80',null);
+insert into studentw1 values(106,'ram','09-JAN-80',null);
+select * from studentw1;
+
+select s.sid,s.sname,s.dob,c.cid,c.cname,c.duration from studentw1 s inner join coursew1 c on s.cid=c.cid;
+select s.sid,s.sname,s.dob,c.cid,c.cname,c.duration from studentw1 s left outer join coursew1 c on s.cid=c.cid;
+select s.sid,s.sname,s.dob,c.cid,c.cname,c.duration from studentw1 s right outer join coursew1 c on s.cid=c.cid;
+select s.sid,s.sname,s.dob,c.cid,c.cname,c.duration from studentw1 s full outer join coursew1 c on s.cid=c.cid;
+select s.sid,s.sname,s.dob,c.cid,c.cname,c.duration from studentw1 s, coursew1 c;
+
+ 

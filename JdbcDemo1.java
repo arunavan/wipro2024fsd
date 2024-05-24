@@ -1,19 +1,15 @@
 package com.wipro.io;
-import java.sql.*;
-public class JdbcDemo {
 
+
+import java.sql.*;
+public class JdbcDemo1 {
 	public static void main(String[] args) throws SQLException,ClassNotFoundException {
-		
 		//step1  create driver
-		
 		Class.forName("oracle.jdbc.OracleDriver");
-		
 		//step2 
 		//url,id,pwd
 		Connection con=DriverManager.getConnection("jdbc:oracle:thin:@localhost:9501/XE","system","rps@123");
-		
 		System.out.println("connection is success");
-		
 		Statement st=con.createStatement();
 		
 		// cretae,altre,drop,insert,indelete,update

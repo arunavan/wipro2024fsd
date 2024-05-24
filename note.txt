@@ -21,3 +21,5 @@ public class JdbcDemo {
 
 }
 
+
+http://www.java2s.com/Code/Jar/o/Downloadojdbc6jar.htm#google_vignette

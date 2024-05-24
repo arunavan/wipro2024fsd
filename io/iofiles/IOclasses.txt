@@ -1,0 +1,38 @@
+
+CheckedOutPutStream:
+
+An output stream that also maintains a 
+checksum of the data being written. 
+The checksum can then be used to verify 
+the integrity of the output data. 
+
+CipherInputStream:
+A CipherInputStream is composed of an InputStream 
+and a Cipher so that read() methods return data 
+that are read in from the underlying InputStream 
+but have been additionally processed by the Cipher. 
+The Cipher must be fully initialized before being used 
+by a CipherInputStream.
+
+DigestInputStream:
+
+Allows for a user to open an input stream and run
+ a digest on all information that passes through that
+ input stream.
+
+This is incredibly useful when a hash is required on a
+ data stream from another program or even another class.
+
+DeflatorInputStream:
+
+Implements an input stream filter for compressing data 
+in the "deflate" compression format. 
+
+ProgressMonitorInputStream:
+
+This creates a progress monitor to monitor the progress
+ of reading the input stream. If it's taking a while, 
+a ProgressDialog will be popped up to inform the user.
+ If the user hits the Cancel button an InterruptedIOException
+ will be thrown on the next read. All the right cleanup is
+ done when the stream is closed.   

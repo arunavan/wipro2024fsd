@@ -1,0 +1,40 @@
+
+--Channel   and Buffer
+
+
+import java.io.*;
+class ChannelBufferDemo
+{ public sttaic void main(String args[]) throws IOException
+  {
+    FileInputStream f1=new FileInputStream("d:\\abc.txt");
+    FileChannel fc=f1.getChannel();
+    ByteBuffer buf=ByteBuffer.allocate(128);
+   int bytes=fc.read(buf);
+   while(bytes!=-1)
+   { System.out.println("Bytes  read:"+bytes);
+     buf.flip();
+   }
+    
+
+  }
+
+}
+
+RandomAccessFile aFile = new RandomAccessFile("data/nio-data.txt", "rw");
+    FileChannel inChannel = aFile.getChannel();
+
+    ByteBuffer buf = ByteBuffer.allocate(48);
+
+    int bytesRead = inChannel.read(buf);
+    while (bytesRead != -1) {
+
+      System.out.println("Read " + bytesRead);
+      buf.flip();
+
+      while(buf.hasRemaining()){
+          System.out.print((char) buf.get());
+      }
+      buf.clear();
+      bytesRead = inChannel.read(buf);
+    }
+    aFile.close();

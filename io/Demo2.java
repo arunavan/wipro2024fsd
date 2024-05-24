@@ -1,29 +1,32 @@
 package com.wipro.io;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 
 public class Demo2 {
 
 	public static void main(String[] args) throws IOException{
-   //byte- 
-		FileInputStream f1=new FileInputStream("d:\\Hello.java");
+   //char
+		FileReader f1=new FileReader("d:\\Hello.java");
+		BufferedReader b1=new BufferedReader(f1); //512, 1024
 		
-		FileOutputStream f2=new FileOutputStream("d:\\Helloout123.txt");
-		
-		
-		
-		int k;
-		
-		while((k=f1.read())!=-1)//-1 EOF
+		FileWriter f2=new FileWriter("d:\\Helloout1234.txt");
+		BufferedWriter b2=new BufferedWriter(f2);
+		String line=null;
+						
+		while((line=b1.readLine())!=null)
 		{
-			System.out.print((char)k);
-			f2.write((char)k);
+			System.out.println(line);
+			b2.write(line);
 		}
 		
-		f1.close();
-		f2.close();
+		f1.close();b1.close();
+		b2.close();f2.close();
 
 	}
 
